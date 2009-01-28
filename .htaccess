@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# NOTE: change this to your actual Laconica path; may be "/".
+
+RewriteBase /laconicadir/
+
+#RewriteRule ^$ index.php?action=public [L,QSA]
+RewriteRule ^providers\.(xml|json)$ getproviders.php?output=$1 [L,QSA]
+RewriteRule ^providers/search.(xml|json)$ getproviders.php?output=$1 [L,QSA]
+RewriteRule ^providers/([0-9]+)\.(xml|json)$ getproviders.php?provider_id=$1&output=$2 [L,QSA]
+RewriteRule ^providers/([a-zA-Z0-9]+)\.(xml|json)$ getproviders.php?provider_nickname=$1&output=$2 [L,QSA]
+
+
+#<FilesMatch "\.(ini)">
+#  Order allow,deny
+#</FilesMatch>
+
