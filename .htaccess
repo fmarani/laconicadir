@@ -4,11 +4,10 @@ RewriteEngine On
 
 RewriteBase /laconicadir/
 
-#RewriteRule ^$ index.php?action=public [L,QSA]
-RewriteRule ^providers\.(xml|json)$ getproviders.php?output=$1 [L,QSA]
-RewriteRule ^providers/search.(xml|json)$ getproviders.php?output=$1 [L,QSA]
-RewriteRule ^providers/([0-9]+)\.(xml|json)$ getproviders.php?provider_id=$1&output=$2 [L,QSA]
-RewriteRule ^providers/([a-zA-Z0-9]+)\.(xml|json)$ getproviders.php?provider_nickname=$1&output=$2 [L,QSA]
+RewriteRule ^providers\.(xml|json)$ getproviders.php?action=all&output=$1 [L,QSA]
+RewriteRule ^providers/search.(xml|json)$ getproviders.php?action=search&output=$1 [L,QSA]
+RewriteRule ^providers/([0-9]+)\.(xml|json)$ getproviders.php?action=getid&provider_id=$1&output=$2 [L,QSA]
+RewriteRule ^providers/([a-zA-Z0-9]+)\.(xml|json)$ getproviders.php?action=getnick&provider_nickname=$1&output=$2 [L,QSA]
 
 
 #<FilesMatch "\.(ini)">
