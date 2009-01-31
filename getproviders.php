@@ -2,7 +2,7 @@
 
 /**
  * API access to directory of laconi.ca istances
- * Copyright (C) 2009, Federico Marani
+ * Copyright (C) 2009 Federico Marani
  *
  * Released under Apache 2.0 license
  *

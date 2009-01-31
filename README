@@ -1,11 +1,10 @@
-API interface for laconi.ca directory implementation
+API interface for laconi.ca instances directory
 
 For details see 
 http://mail.laconi.ca/pipermail/laconica-dev/2009-January/000825.html
 
 requirements
 ------------
-PHP > 5.1
-XMLWriter
+PHP > 5.1 (for PHP Data Objects)
 Sqlite 3
-No MultiViews in apache conf: mess with rewriterules
+No MultiViews in apache conf: mess with rewriterules (?)
