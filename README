@@ -3,8 +3,13 @@ API interface for laconi.ca instances directory
 For details see 
 http://mail.laconi.ca/pipermail/laconica-dev/2009-January/000825.html
 
+TODO
+----
+UI
+Memcache (?)
+
 requirements
 ------------
 PHP > 5.1 (for PHP Data Objects)
-Sqlite 3
+MySQL (APIs still work with Sqlite 3)
 No MultiViews in apache conf: mess with rewriterules (?)

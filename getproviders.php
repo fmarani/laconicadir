@@ -8,10 +8,14 @@
  *
  */
 
+define(C_DBUSER,'laconicadir');
+define(C_DBPASSWORD,'laconicadir');
+
 # DB HELPER
 function dbgetproviders($sqlconditions=null,$sqlvars=null,$return_one=false) {
 	try {
-		$dbh = new PDO('sqlite:providers.db');
+		#$dbh = new PDO('sqlite:db/providers.db');
+		$dbh = new PDO('mysql:host=localhost;dbname=laconicadir', C_DBUSER, C_DBPASSWORD);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 	} 
 	catch (PDOException $e) {
@@ -66,6 +70,7 @@ function dbgetproviders($sqlconditions=null,$sqlvars=null,$return_one=false) {
 		if ($providers[$row['id']]) {
 			$providers[$row['id']]['description'][$row['language']] = $row['description'];
 			$providers[$row['id']]['fullname'][$row['language']] = $row['fullname'];
+			$providers[$row['id']]['categories'][$row['language']] = $row['categories'];
 		}
 		else {
 			$array = array(
@@ -76,11 +81,15 @@ function dbgetproviders($sqlconditions=null,$sqlvars=null,$return_one=false) {
 				'streamlogo' => $row['streamlogo'],
 				'rooturl' => $row['rooturl'],
 				'apirooturl' => $row['apirooturl'],
+				'license' => $row['license'],
 				'description' => array(
 					$row['language'] => $row['description']
 				),
 				'fullname' => array(
 					$row['language'] => $row['fullname']
+				),
+				'categories' => array(
+					$row['language'] => $row['categories']
 				)
 			);
 			$providers[$row['id']] = $array;
@@ -114,11 +123,11 @@ switch ($action) {
 		break;
 	case 'getid':
 		# GET A PROVIDER BY ID
-		$provider = dbgetproviders("p.id == ? ",array($_REQUEST['provider_id']),True);
+		$provider = dbgetproviders("p.id = ? ",array($_REQUEST['provider_id']),True);
 		break;
 	case 'getnick':
 		# GET A PROVIDER BY NICKNAME
-		$provider = dbgetproviders("p.nickname == ? ",array($_REQUEST['provider_nickname']),True);
+		$provider = dbgetproviders("p.nickname = ? ",array($_REQUEST['provider_nickname']),True);
 		break;
 }
 
@@ -127,7 +136,7 @@ if ($output == 'xml') {
 		# print a single <provider> element on xmlwriter
 		$xw->startElement('provider');
 		foreach($provider as $key => $value) {
-			if ($key == 'description' or $key == 'fullname') {
+			if ($key == 'description' or $key == 'fullname' or $key == 'categories') {
 				# hanling languages
 				foreach($value as $lang => $translated_text) {
 					$xw->startElement($key);
@@ -159,7 +168,7 @@ if ($output == 'xml') {
 		}
 		$xw->endElement();
 	}
-	else {
+	else if (isset($provider)) {
 		# ONLY ONE ELEMENT (result of get by id or nickname)
 		xw_print_provider_element($xw,$provider);
 	}
