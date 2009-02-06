@@ -77,7 +77,7 @@ INSERT INTO `providers_langspecific` (`id_provider`, `language`, `fullname`, `de
 
 CREATE TABLE IF NOT EXISTS `ui_users` (
   `id_provider` int(6) NOT NULL,
-  `sha1_password` binary(20) NOT NULL,
+  `sha1_password` binary(40) NOT NULL,
   KEY `id_provider` (`id_provider`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
