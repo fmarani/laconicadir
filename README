@@ -1,12 +1,12 @@
-API interface for laconi.ca instances directory
+Laconi.ca instances directory
 
 For details see 
 http://mail.laconi.ca/pipermail/laconica-dev/2009-January/000825.html
 
 TODO
 ----
-Memcache (?)
-Register new laconica instance from the UI
+Memcache for API access (?)
+What about lost password (?)
 
 requirements
 ------------
