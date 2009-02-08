@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 02 Feb, 2009 at 05:43 PM
+-- Generato il: 08 Feb, 2009 at 01:45 AM
 -- Versione MySQL: 5.0.67
 -- Versione PHP: 5.2.6-2ubuntu4
 
@@ -28,23 +28,23 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `providers` (
   `id` int(6) NOT NULL auto_increment,
   `nickname` varchar(64) NOT NULL,
-  `minilogo` varchar(128) NOT NULL,
-  `streamlogo` varchar(128) NOT NULL,
-  `profilelogo` varchar(128) NOT NULL,
-  `rooturl` varchar(128) NOT NULL,
-  `registrationurl` varchar(128) NOT NULL,
-  `apirooturl` varchar(128) NOT NULL,
-  `license` varchar(64) NOT NULL,
+  `minilogo` varchar(128) default NULL,
+  `streamlogo` varchar(128) default NULL,
+  `profilelogo` varchar(128) default NULL,
+  `rooturl` varchar(128) default NULL,
+  `registrationurl` varchar(128) default NULL,
+  `apirooturl` varchar(128) default NULL,
+  `license` varchar(64) default NULL,
   `lastmodified` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dump dei dati per la tabella `providers`
 --
 
 INSERT INTO `providers` (`id`, `nickname`, `minilogo`, `streamlogo`, `profilelogo`, `rooturl`, `registrationurl`, `apirooturl`, `license`, `lastmodified`) VALUES
-(1, 'identica', 'http://identi.ca/minilogo.gif', 'http://identi.ca/streamlogo.gif', 'http://identi.ca/profilelogo.gif', 'http://identi.ca/', 'http://identi.ca/new_user', 'http://identi.ca/api/', 'CC-By-License', '2009-02-02 00:00:00');
+(1, 'identica', 'http://identi.ca/logo.gif', 'http://identi.ca/streamlogo.gif', 'http://identi.ca/profilelogo.gif', 'http://identi.ca/', 'as', 'http://identi.ca/api/', 'CC-By-License', '2009-02-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `providers_langspecific` (
 
 INSERT INTO `providers_langspecific` (`id_provider`, `language`, `fullname`, `description`, `categories`) VALUES
 (1, 'en', 'Identi.ca microblogging service', 'Start your own microblog on identi.ca!', 'all'),
-(1, 'it', 'Identi.ca servizio di microblogging', 'Crea il tuo microblog su identi.ca!', 'tutto');
+(1, 'it', 'Identi.ca servizio di microblogging', 'Crea il tuo microblog su identi.ca!', 'tutto, niente'),
+(1, 'es', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -85,3 +86,5 @@ CREATE TABLE IF NOT EXISTS `ui_users` (
 -- Dump dei dati per la tabella `ui_users`
 --
 
+INSERT INTO `ui_users` (`id_provider`, `sha1_password`) VALUES
+(1, '9ed143692d4fd3c68fb8f1e2a603bff6b8e0ee62');
